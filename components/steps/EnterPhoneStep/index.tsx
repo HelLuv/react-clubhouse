@@ -1,13 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
 import NumberFormat from 'react-number-format';
-import { WhiteBlock } from '../../WhiteBlock';
-import { Button } from '../../Button';
-import { StepInfo } from '../../StepInfo';
+import {WhiteBlock} from '../../WhiteBlock';
+import {Button} from '../../Button';
+import {StepInfo} from '../../StepInfo';
 
 import styles from './EnterPhoneStep.module.scss';
-// import { MainContext } from '../../../pages';
-// import { Axios } from '../../../core/axios';
+import {MainContext} from '../../../pages';
+import {Axios} from '../../../core/axios';
 
 type InputValueState = {
   formattedValue: string;
@@ -15,14 +15,14 @@ type InputValueState = {
 }
 
 export const EnterPhoneStep: React.FC = () => {
-  // const { onNextStep, setFieldValue } = React.useContext(MainContext);
+  const {onNextStep} = React.useContext(MainContext);
   // const [isLoading, setIsLoading] = React.useState(false);
   const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
 
   const disabled = !values.formattedValue || values.formattedValue.includes('_');
 
   const onSubmit = () => {
-    console.log(values)
+    onNextStep();
   }
   //   try {
   //     setIsLoading(true);
@@ -51,10 +51,10 @@ export const EnterPhoneStep: React.FC = () => {
             mask="_"
             placeholder="+7 (999) 888-77-66"
             value={values.value}
-            onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
+            onValueChange={({formattedValue, value}) => setValues({formattedValue, value})}
           />
         </div>
-        <Button disabled={ disabled} onClick={onSubmit}>
+        <Button disabled={disabled} onClick={onSubmit}>
           {
             (
               <>

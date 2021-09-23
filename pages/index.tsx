@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image';
 import {WelcomeStep} from "../components/steps/WelcomeStep";
-import {FC, useState} from "react";
+import React from "react";
 import {GitHubStep} from "../components/steps/GitHubStep";
 import {EnterNameStep} from "../components/steps/EnterNameStep";
 import {ChooseAvatarStep} from "../components/steps/ChooseAvatarStep";
@@ -14,16 +14,27 @@ const stepsComponents = {
   2: EnterNameStep,
   3: ChooseAvatarStep,
   4: EnterPhoneStep,
-  5:EnterCodeStep,
+  5: EnterCodeStep,
 };
 
-export default function Home<FC>() {
-  const [step, setStep] = useState<number>(5);
+interface MainContextProps {
+  onNextStep: () => void;
+  step: number;
+}
+
+export const MainContext = React.createContext<MainContextProps>({} as MainContextProps);
+
+export default function Home() {
+  const [step, setStep] = React.useState<number>(0);
   // @ts-ignore
   const Step = stepsComponents[step];
+  const onNextStep = () => {
+    setStep(prev => prev + 1)
+  }
+
   return (
-    <div >
-        <Step/>
-    </div>
+    <MainContext.Provider value={{step, onNextStep}}>
+      <Step/>
+    </MainContext.Provider>
   )
 }

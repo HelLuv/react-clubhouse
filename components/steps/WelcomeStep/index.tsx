@@ -1,12 +1,12 @@
-import { WhiteBlock } from '../../WhiteBlock';
-import { Button } from '../../Button';
+import {WhiteBlock} from '../../WhiteBlock';
+import {Button} from '../../Button';
 
 import styles from './WelcomeStep.module.scss';
 import React from 'react';
-import { MainContext } from '../../../pages';
+import {MainContext} from '../../../pages';
 
 export const WelcomeStep: React.FC = () => {
-    // const { onNextStep } = React.useContext(MainContext);
+    const {onNextStep} = React.useContext(MainContext);
 
     return (
         <WhiteBlock className={styles.block}>
@@ -19,7 +19,7 @@ export const WelcomeStep: React.FC = () => {
                 youches, we’re adding people gradually to make sure nothing breaks :)
             </p>
             <div>
-                <Button>
+                <Button onClick={onNextStep}>
                     Get your username
                     <img className="d-ib ml-10" src="/static/arrow.svg"/>
                 </Button>

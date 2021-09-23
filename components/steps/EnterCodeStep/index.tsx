@@ -1,9 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
-import { WhiteBlock } from '../../WhiteBlock';
-import { useRouter } from 'next/router';
-import { StepInfo } from '../../StepInfo';
-// import { Axios } from '../../../core/axios';
+import {WhiteBlock} from '../../WhiteBlock';
+import {useRouter} from 'next/router';
+import {StepInfo} from '../../StepInfo';
+import {Axios} from '../../../core/axios';
 
 import styles from './EnterPhoneStep.module.scss';
 // import { MainContext } from '../../../pages';
@@ -31,19 +31,15 @@ export const EnterCodeStep: React.FC = () => {
 
   const onSubmit = async (code: string) => {
     console.log(code);
-    // try {
-    //   setIsLoading(true);
-    //   await Axios.post(`/auth/sms/activate`, {
-    //     code,
-    //     user: userData,
-    //   });
-    //   await router.push('/rooms');
-    // } catch (error) {
-    //   alert('Ошибка при активации!');
-    //   setCodes(['', '', '', '']);
-    // }
-    //
-    // setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await Axios.get(`/todos`);
+      await router.push('/rooms');
+    } catch (error) {
+      alert('Ошибка при активации!');
+      setCodes(['', '', '', '']);
+    }
+    setIsLoading(false);
   };
 
   return (

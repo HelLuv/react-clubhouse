@@ -1,16 +1,16 @@
 import clsx from 'clsx';
 // import Cookies from 'js-cookie';
-import { WhiteBlock } from '../../WhiteBlock';
-import { Button } from '../../Button';
+import {WhiteBlock} from '../../WhiteBlock';
+import {Button} from '../../Button';
 // import { StepInfo } from '../../StepInfo';
 
 // @ts-ignore
 import styles from './GitHubStep.module.scss';
-import React, { useEffect } from 'react';
-// import { MainContext, UserData } from '../../../pages';
+import React, {useEffect} from 'react';
+import {MainContext} from '../../../pages';
 
 export const GitHubStep = () => {
-  // const { onNextStep, setUserData } = React.useContext(MainContext);
+  const {onNextStep} = React.useContext(MainContext);
 
   const onClickAuth = () => {
     window.open(
@@ -21,7 +21,7 @@ export const GitHubStep = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('message', ({ data }) => {
+    window.addEventListener('message', ({data}) => {
       const user = data;
       if (typeof user === 'string' && user.includes('avatarUrl')) {
         const json = JSON.parse(user);
@@ -43,7 +43,7 @@ export const GitHubStep = () => {
           Import from GitHub
           <img className="d-ib ml-10" src="/static/arrow.svg" alt={'nextstep'}/>
         </Button>
-        <div className="link mt-20 cup d-ib">Enter my info manually</div>
+        <div onClick={onNextStep} className="link mt-20 cup d-ib">Enter my info manually</div>
       </WhiteBlock>
     </div>
   );

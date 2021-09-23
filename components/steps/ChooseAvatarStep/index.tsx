@@ -1,13 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
-import { WhiteBlock } from '../../WhiteBlock';
-import { Button } from '../../Button';
-import { StepInfo } from '../../StepInfo';
+import {WhiteBlock} from '../../WhiteBlock';
+import {Button} from '../../Button';
+import {StepInfo} from '../../StepInfo';
 // import { Avatar } from '../../Avatar';
 
 import styles from './ChooseAvatarStep.module.scss';
 import {Avatar} from "../../Avatar";
-// import { MainContext } from '../../../pages';
+import {MainContext} from '../../../pages';
 // import { Axios } from '../../../core/axios';
 
 // const uploadFile = async (file: File): Promise<{ url: string }> => {
@@ -25,7 +25,7 @@ import {Avatar} from "../../Avatar";
 // };
 
 export const ChooseAvatarStep: React.FC = () => {
-  // const { onNextStep, setFieldValue, userData } = React.useContext(MainContext);
+  const {onNextStep} = React.useContext(MainContext);
   // const avatarLetters = userData.fullname
   //   .split(' ')
   //   .map(s => s[0])
@@ -37,7 +37,7 @@ export const ChooseAvatarStep: React.FC = () => {
     const target = (event.target as HTMLInputElement);
     // @ts-ignore
     const file = target.files[0];
-    if(file){
+    if (file) {
       const imageUrl = URL.createObjectURL(file);
       setAvatarUrl(imageUrl);
     }
@@ -69,7 +69,7 @@ export const ChooseAvatarStep: React.FC = () => {
           </label>
         </div>
         <input id="image" ref={inputFileRef} type="file" hidden/>
-        <Button onClick={()=>console.log('Next')}>
+        <Button onClick={onNextStep}>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg"/>
         </Button>
